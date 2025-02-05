@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Employee {
+  employee_id    Int      @id @default(autoincrement())
+  employee_name  String   @db.VarChar(100)
+  employee_email String   @unique @db.VarChar(100)
+  employee_age   Int  
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  @@index([employee_name(length: 100)])
+  @@index([employee_email(length: 100)])
+}

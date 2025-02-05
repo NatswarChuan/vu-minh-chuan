@@ -1,0 +1,63 @@
+### Create a new employee (POST)
+POST http://127.0.0.1:3000/employees/
+Content-Type: application/json
+
+{
+  "employee_name": "Nguyễn Văn A",
+  "employee_email": "naaa@gmail.com",
+  "employee_age": "30"
+}
+
+### Get a list of employees with filter (GET)
+# Filter by name
+GET http://127.0.0.1:3000/employees?name=Nguyễn
+
+### Get a list of employees with filter (GET)
+# Filter by email
+GET http://127.0.0.1:3000/employees?email=nva@gmail.com
+
+### Get a list of employees with filter (GET)
+# Filter by name and email
+GET http://127.0.0.1:3000/employees?name=Nguyễn&email=nva@gmail.com
+
+### Get a list of employees with filter (GET)
+# Filter by name and sort by age (ascending)
+GET http://127.0.0.1:3000/employees?name=Nguyễn&sort_by=employee_age&order=asc
+
+### Get a list of employees with filter (GET)
+# Filter by email and sort by created date (descending)
+GET http://127.0.0.1:3000/employees?email=nva@gmail.com&sort_by=created_at&order=desc
+
+### Get a list of employees with filter (GET)
+# Filter by name and email, sort by name and age (ascending), pagination
+GET http://127.0.0.1:3000/employees?name=Nguyễn&email=nva@gmail.com&sort_by=employee_name,employee_age&order=asc,asc&page=1&page_size=10
+
+### Get a list of employees with filter (GET)
+# Filter by name, sort by age (descending), pagination
+GET http://127.0.0.1:3000/employees?name=Nguyễn&sort_by=employee_age&order=desc&page=1&page_size=5
+
+### Get a list of employees with filter (GET)
+# Filter by email and age, no sorting, pagination
+GET http://127.0.0.1:3000/employees?email=nva@gmail.com&employee_age=30&page=1&page_size=10
+
+### Get employee details by ID (GET)
+GET http://127.0.0.1:3000/employees/1
+
+### Update employee information (PUT)
+PUT http://127.0.0.1:3000/employees/1
+Content-Type: application/json
+
+{
+  "employee_name": "Nguyễn Văn B",
+  "employee_email": "nvb@gmail.com",
+  "updated_at": "2025-02-05T09:46:46.390Z",
+  "employee_age": "31"
+}
+
+### Delete an employee (DELETE)
+DELETE http://127.0.0.1:3000/employees/1
+Content-Type: application/json
+
+{
+  "updated_at": "2025-02-05T09:47:20.497Z"
+}
