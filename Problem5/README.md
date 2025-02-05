@@ -14,7 +14,7 @@
 
 ### Prerequisites
 Ensure you have the following installed:
-- Node.js (>= 22.x)
+- Node.js (>= 2222.x)
 - MySQL
 - npm or yarn
 
@@ -88,24 +88,74 @@ Content-Type: application/json
   "employee_age": "30"
 }
 ```
+**Response:**
+```json
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Nguyễn Văn A",
+    "email": "naaa@gmail.com",
+    "age": 30,
+    "updated_at": "2025-02-05T09:46:46.390Z",
+    "created_at": "2025-02-05T09:46:46.390Z"
+  }
+}
+```
+
+**Response DTO Explanation:**
+- `id`: Unique identifier for the employee.
+- `name`: Full name of the employee.
+- `email`: Email address of the employee.
+- `age`: Age of the employee.
+- `updated_at`: Timestamp of the last update.
+- `created_at`: Timestamp of when the employee record was created.
 
 ### Get Employees with Filters (GET)
 ```http
 GET http://127.0.0.1:3000/employees?name=Nguyễn&email=nva@gmail.com&sort_by=employee_age&order=asc&page=1&page_size=10
 ```
+**Response:**
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Nguyễn Văn A",
+      "email": "naaa@gmail.com",
+      "age": 30,
+      "updated_at": "2025-02-05T09:46:46.390Z"
+    }
+  ]
+}
+```
 
-#### Filter Options:
-- `name`: Filter by employee name
-- `email`: Filter by employee email
-- `sort_by`: Sort by a field (e.g., `employee_age`, `created_at`)
-- `order`: Sort order (`asc` or `desc`)
-- `page`: Page number for pagination
-- `page_size`: Number of records per page
+**Response DTO Explanation:**
+- `status`: API response status.
+- `data`: List of employees matching the filters.
+- `id`, `name`, `email`, `age`, `updated_at`: As explained above.
 
 ### Get Employee by ID (GET)
 ```http
 GET http://127.0.0.1:3000/employees/{id}
 ```
+**Response:**
+```json
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Nguyễn Văn A",
+    "email": "naaa@gmail.com",
+    "age": 30,
+    "updated_at": "2025-02-05T09:46:46.390Z"
+  }
+}
+```
+
+**Response DTO Explanation:**
+- Similar to the list endpoint but returns a single employee.
 
 ### Update Employee Details (PUT)
 ```http
@@ -119,6 +169,24 @@ Content-Type: application/json
   "employee_age": "31"
 }
 ```
+**Response:**
+```json
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Nguyễn Văn B",
+    "email": "nvb@gmail.com",
+    "age": 31,
+    "updated_at": "2025-02-05T09:50:00.390Z",
+    "created_at": "2025-02-05T09:46:46.390Z"
+  }
+}
+```
+
+**Response DTO Explanation:**
+- Includes updated employee details.
+- `updated_at` reflects the latest modification timestamp.
 
 ### Delete an Employee (DELETE)
 ```http
@@ -129,6 +197,17 @@ Content-Type: application/json
   "updated_at": "2025-02-05T09:47:20.497Z"
 }
 ```
+**Response:**
+```json
+{
+  "status": "success",
+  "data": null
+}
+```
+
+**Response DTO Explanation:**
+- `data` is `null` since the record is deleted.
+- `status` confirms the success of the operation.
 
 ---
 
