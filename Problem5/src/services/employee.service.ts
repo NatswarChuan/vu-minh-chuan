@@ -1,19 +1,26 @@
 import { Employee } from '@prisma/client';
 import { prisma } from '../ultils/prisma.util';
+import { Response } from 'express';
+import { validate as isUUID } from 'uuid';
+
 
 /**
- * Parses and validates an employee ID.
- * @param id The employee ID as a string.
- * @param res The Express response object.
- * @returns The parsed employee ID as a number, or null if invalid.
+ * Parses and validates a UUID employee ID
+ * @param id The employee ID as a string
+ * @param res Express response object
+ * @returns Original UUID string if valid, null if invalid
  */
-export const parseEmployeeId = (id: string, res: any): number | null => {
-  const employeeId: number = parseInt(id, 10);
-  if (isNaN(employeeId)) {
-    res.status(400).json({ success: false, error: 'Invalid employee ID' });
+export const parseEmployeeId = (id: string, res: Response): string | null => {
+  
+  if (!isUUID(id)) {
+    res.status(400).json({ 
+      success: false, 
+      error: 'Invalid UUID format for employee ID' 
+    });
     return null;
   }
-  return employeeId;
+  
+  return id;
 };
 
 /**
@@ -72,7 +79,7 @@ export const getEmployees = async (filters: any, sortFields: string[], sortOrder
  * @param id The ID of the employee.
  * @returns The employee if found, null otherwise.
  */
-export const getEmployeeById = async (id: number): Promise<Employee | null> => {
+export const getEmployeeById = async (id: string): Promise<Employee | null> => {
   return await prisma.employee.findUnique({ where: { employee_id: id } });
 };
 
@@ -86,7 +93,7 @@ export const getEmployeeById = async (id: number): Promise<Employee | null> => {
  * @returns The updated employee.
  * @throws Error if employee is not found or data has changed (optimistic locking failure).
  */
-export const updateEmployee = async (id: number, employee_name: string, employee_email: string, employee_age: number, updated_at: string): Promise<Employee> => {
+export const updateEmployee = async (id: string, employee_name: string, employee_email: string, employee_age: number, updated_at: string): Promise<Employee> => {
   const existingEmployee = await prisma.employee.findUnique({ where: { employee_id: id } });
 
   if (!existingEmployee) {
@@ -109,7 +116,7 @@ export const updateEmployee = async (id: number, employee_name: string, employee
  * @param updated_at The timestamp of the last update for optimistic locking.
  * @throws Error if employee is not found or data has changed (optimistic locking failure).
  */
-export const deleteEmployee = async (id: number, updated_at: string): Promise<void> => {
+export const deleteEmployee = async (id: string, updated_at: string): Promise<void> => {
   const existingEmployee = await prisma.employee.findUnique({ where: { employee_id: id } });
 
   if (!existingEmployee) {

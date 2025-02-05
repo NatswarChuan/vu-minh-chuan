@@ -41,10 +41,10 @@ GET http://127.0.0.1:3000/employees?name=Nguyễn&sort_by=employee_age&order=des
 GET http://127.0.0.1:3000/employees?email=nva@gmail.com&employee_age=30&page=1&page_size=10
 
 ### Get employee details by ID (GET)
-GET http://127.0.0.1:3000/employees/1
+GET http://127.0.0.1:3000/employees/4192d40f-f82e-4154-8c7e-1b128c63ca56
 
 ### Update employee information (PUT)
-PUT http://127.0.0.1:3000/employees/1
+PUT http://127.0.0.1:3000/employees/4192d40f-f82e-4154-8c7e-1b128c63ca56
 Content-Type: application/json
 
 {
@@ -55,7 +55,7 @@ Content-Type: application/json
 }
 
 ### Delete an employee (DELETE)
-DELETE http://127.0.0.1:3000/employees/1
+DELETE http://127.0.0.1:3000/employees/4192d40f-f82e-4154-8c7e-1b128c63ca56
 Content-Type: application/json
 
 {

@@ -86,7 +86,7 @@ export const getEmployees = async (req: GetEmployeesDTO, res: GetEmployeesRespon
  */
 export const getEmployeeById = async (req: GetEmployeeByIdDTO, res: GetEmployeeByIdResponseDTO) => {
   try {
-    const employeeId: number | null = employeeService.parseEmployeeId(req.params.id, res);
+    const employeeId: string | null = employeeService.parseEmployeeId(req.params.id, res);
     if (!employeeId) return;
 
     const employee = await employeeService.getEmployeeById(employeeId);
@@ -113,7 +113,7 @@ export const getEmployeeById = async (req: GetEmployeeByIdDTO, res: GetEmployeeB
  */
 export const updateEmployee = async (req: UpdateEmployeeDTO, res: UpdateEmployeeResponseDTO) => {
   try {
-    const employeeId: number | null = employeeService.parseEmployeeId(req.params.id, res);
+    const employeeId: string | null = employeeService.parseEmployeeId(req.params.id, res);
     if (!employeeId) return;
 
     const { employee_name, employee_email, updated_at, employee_age: age } = req.body;
@@ -148,7 +148,7 @@ export const updateEmployee = async (req: UpdateEmployeeDTO, res: UpdateEmployee
  */
 export const deleteEmployee = async (req: DeleteEmployeeDTO, res: DeleteEmployeeResponseDTO) => {
   try {
-    const employeeId: number | null = employeeService.parseEmployeeId(req.params.id, res);
+    const employeeId: string | null = employeeService.parseEmployeeId(req.params.id, res);
     if (!employeeId) return;
 
     const { updated_at }: DeleteEmployeeDTOBody = req.body;

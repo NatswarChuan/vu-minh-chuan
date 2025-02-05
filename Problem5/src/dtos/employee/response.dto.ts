@@ -39,7 +39,7 @@ export class GetEmployeeResponseDataDTO {
     /**
      * The ID of the employee.
      */
-    id: number;
+    id: string;
     /**
      * The name of the employee.
      */
@@ -78,7 +78,7 @@ export class CreateEmployeeResponseDataDTO {
     /**
      * The ID of the employee.
      */
-    id: number;
+    id: string;
     /**
      * The name of the employee.
      */
@@ -123,7 +123,7 @@ export class UpdateEmployeeResponseDataDTO {
     /**
      * The ID of the employee.
      */
-    id: number;
+    id: string;
     /**
      * The name of the employee.
      */
