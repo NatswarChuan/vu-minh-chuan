@@ -1,5 +1,5 @@
 import { Employee } from '@prisma/client';
-import { prisma } from '../ultils/prisma.util';
+import { prisma } from '../utils/prisma.util';
 import { Response } from 'express';
 import { validate as isUUID } from 'uuid';
 
